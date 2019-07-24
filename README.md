@@ -1,4 +1,4 @@
-# Scan Demo DB API
+# Cosball MVP DB API
 This is the MongoDB API. All access to the Cosball Mongo DB pass through this API Server.
 
 ## Environment Setup ##
