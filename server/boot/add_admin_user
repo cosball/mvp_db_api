@@ -1,0 +1,55 @@
+module.exports = function(app) {
+  var User = app.models.user;
+  var Role = app.models.Role;
+  var RoleMapping = app.models.RoleMapping;
+  var Institution = app.models.institution;
+  
+  Institution.create([
+    {institutionShortName: 'Cosball', institutionName: 'Cosball Laboratory', institutionAddress: 'NEM Blockchain Centre, KL',  
+     institutionType: 'Main', contactNo: '0195711347', createdAt: Date.now(), creator: 'webadmin'}
+  ], function(err, institutions) {
+    if (err) throw err;
+    var vaultId = institutions[0].id;
+    console.log('Created institution:', institutions);
+
+    User.create([
+      {username: 'webadmin', firstname: 'Web', lastname: 'Administrator', email: 'webadmin@cosball.io', password: 'opensaysme1234', 
+       institutionShortName: 'Cosball', roleType: 'Super', posTitle: 'Web Admin', contactNo: '0195711347', 
+       addSkinDataCount: 0, upSkinDataCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId},
+      {username: 'apiadmin', firstname: 'API', lastname: 'Administrator', email: 'apiadmin@cosball.io', password: 'opensaysme1234', 
+       institutionShortName: 'Cosball', roleType: 'Super', posTitle: 'API Admin', contactNo: '0195711347', 
+       addSkinDataCount: 0, upSkinDataCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId}       
+    ], function(err, users) {
+      if (err) throw err;
+
+      console.log('Created users:', users);
+
+      //create the admin role
+      Role.create({
+        name: 'admin'
+      }, function(err, role) {
+        if (err) throw err;
+
+        console.log('Created role:', role);
+
+        //make user an admin
+        role.principals.create({
+          principalType: RoleMapping.USER,
+          principalId: users[0].id
+        }, function(err, principal) {
+          if (err) throw err;
+
+          console.log('Created principal:', principal);
+        });
+        role.principals.create({
+          principalType: RoleMapping.USER,
+          principalId: users[1].id
+        }, function(err, principal) {
+          if (err) throw err;
+
+          console.log('Created principal:', principal);
+        });
+      });
+    });    
+    });
+};

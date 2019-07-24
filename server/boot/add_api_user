@@ -1,0 +1,44 @@
+module.exports = function(app) {
+  var User = app.models.user;
+  var Role = app.models.Role;
+  var RoleMapping = app.models.RoleMapping;
+  var Institution = app.models.institution;
+  
+  Institution.create([
+    {institutionShortName: 'TheExchange', institutionName: 'The Exchange Name', institutionAddress: 'The Exchange Address', nemAddress: 'The Exchange NEM Address', 
+     institutionType: 'Exchange', contactNo: 'The contact No', createdAt: Date.now(), creator: 'webadmin'}
+  ], function(err, institutions) {
+    if (err) throw err;
+    var vaultId = institutions[0].id;
+    console.log('Created institution:', institutions);
+
+    User.create([
+      {username: 'apiadmin', firstname: 'API', lastname: 'Administrator', email: 'apiadmin@theexchangedomain.com', password: 'opensaysme', 
+       institutionShortName: 'TheExchange', roleType: 'Admin', posTitle: 'API Admin', contactNo: 'The contact no', 
+       addSkinDataCount: 0, upSkinDataCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId}
+    ], function(err, users) {
+      if (err) throw err;
+
+      console.log('Created users:', users);
+
+      //create the admin role
+      Role.create({
+        name: 'api'
+      }, function(err, role) {
+        if (err) throw err;
+
+        console.log('Created role:', role);
+
+        //make bob an admin
+        role.principals.create({
+          principalType: RoleMapping.USER,
+          principalId: users[0].id
+        }, function(err, principal) {
+          if (err) throw err;
+
+          console.log('Created principal:', principal);
+        });
+      });
+    });    
+    });
+};

@@ -1,0 +1,31 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "scanDemoProd",
+    "password": "a506035c0d7aa856300aa8062166cc08",
+    "name": "db",
+    "user": "scanDemoUserProd",
+    "useNewUrlParser": true,
+    "connector": "mongodb"
+  },
+  "emailDS": {
+      "name": "emailDS",
+      "connector": "mail",
+      "transports": [{
+        "type": "SMTP",
+        "host": "smtp.office365.com",
+        "secure": false,
+        "port": 587,
+        "tls": {
+            "ciphers": "SSLv3"
+        },
+        "auth": {
+          "user": "productsupport@cosball.io",
+          "pass": "Ub40_#!$"
+        },
+        "requireTLS": true
+      }]
+  }
+}
