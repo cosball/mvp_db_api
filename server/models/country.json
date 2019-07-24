@@ -1,37 +1,16 @@
 {
-  "name": "transLog",
+  "name": "country",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "transactionType": {
+    "name": {
       "type": "string",
       "required": true
-    },
-    "createdAt": {
-      "type": "date",
-      "required": true
-    },
-    "creator": {
-      "type": "string",
-      "required": true
-    },
-    "result": {
-      "type": "string",
-      "required": true
-    },
-    "transactionHash": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string" 
     }
   },
-  "scope": {
-    "order": "createdAt DESC"
-  },  
   "validations": [],
   "relations": {},
   "acls": [

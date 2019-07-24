@@ -6,7 +6,7 @@ var EXPIRY_DAYS = 2 * 24 * 60 * 60 * 1000;
 var config = require('../../server/config.json');
 var path = require('path');
 var app = require('../../server/server');
-var senderAddress = 'productsupport@cosball.io';
+var senderAddress = 'productsupport@thevaultlab.com';
 module.exports = function(User) {
 
   User.disableRemoteMethodByName('patchOrCreate')
@@ -23,9 +23,9 @@ module.exports = function(User) {
   User.disableRemoteMethodByName('prototype.__findById__transLogs');   
   User.disableRemoteMethodByName('prototype.__updateById__transLogs'); 
   User.disableRemoteMethodByName('prototype.__destroyById__transLogs');  
-  User.disableRemoteMethodByName('prototype.__findById__skindata');   
-  User.disableRemoteMethodByName('prototype.__updateById__skindata'); 
-  User.disableRemoteMethodByName('prototype.__destroyById__skindata');    
+  User.disableRemoteMethodByName('prototype.__findById__blacklists');   
+  User.disableRemoteMethodByName('prototype.__updateById__blacklists'); 
+  User.disableRemoteMethodByName('prototype.__destroyById__blacklists');    
   
   //send password reset link when requested
   User.on('resetPasswordRequest', function(info) {
@@ -234,8 +234,8 @@ module.exports = function(User) {
         ctx.args.data.tempPassExpiry = new Date(Date.now()+EXPIRY_DAYS);
         ctx.args.data.tempPassExpired = false;
         ctx.args.data.createdAt = new Date();
-        ctx.args.data.addSkinDataCount = 0;
-        ctx.args.data.upSkinDataCount = 0;
+        ctx.args.data.addBlackListCount = 0;
+        ctx.args.data.upBlackListCount = 0;
         ctx.args.data.emailVerified = true;
       }
       next();
@@ -259,18 +259,18 @@ module.exports = function(User) {
 
     //var link = 'http://' + ctx.req.headers.host + '/#/landing';
     var link = config.webhost + '/#/landing';
-    var html = '<br><img src="cid:cosball" alt="Cosball">'+
-        '<br><h2>Welcome to the Cosball Beta!</h2>'+
-        'Hi '+ctx.args.data.firstname+', thank you for signing up for access to the Cosball Beta.'+
+    var html = '<br><img src="cid:vault" alt="Vault">'+
+        '<br><h2>Welcome to the NEMVault Beta!</h2>'+
+        'Hi '+ctx.args.data.firstname+', thank you for signing up for access to the NEMVault Beta.'+
         "<br><br>Your account has been created and you can now login with the following credentials:"+
         "<br><br>Username : "+ctx.args.data.email+
         "<br>Temporary password : " + ctx.args.data.password+
         "<br><br>This temporary password is valid only for 48 hours."+
         "<br>Please note that you will be prompted to set a new password upon logging in for the first time."+
-        '<br><br><a href="' + link + '">'+'<img src="cid:login" alt="Cosball Login">'+'</a>'+
+        '<br><br><a href="' + link + '">'+'<img src="cid:login" alt="Vault Login">'+'</a>'+
         "<br><br>We hope you enjoy your experience with the beta and please let us know how we can further improve it "+
         '<a href="' + 'http://bit.ly/nvbfeedback' + '">'+'here'+'</a>'+
-        "<br><br>Regards,<br>Cosball Team."
+        "<br><br>Regards,<br>The Vault Team."
     console.log(ctx.args.data.password)
     console.log(html)
     User.app.models.Email.send({
@@ -282,7 +282,7 @@ module.exports = function(User) {
           {
            filename: 'B8DC0B75423E46A2B3728E462FE47275.png',
            path: __dirname +'/img/B8DC0B75423E46A2B3728E462FE47275.png',
-           cid: 'cosball'  
+           cid: 'vault'  
           },
           {
            filename: '368A520F1DFD42C7AA8A4073FAAA2B6B.png',
@@ -414,16 +414,16 @@ module.exports = function(User) {
                        '<br><br>New inquiry received from '+ contactus.fullname + ' (' + contactus.email + ') with the following message:'+
                        '<br><br>'+contactus.message+
                        attachment_msg+
-                       '<br><br>Best regards,<br>Cosball Team.'
-            toEmail = 'inquiry@cosball.io'
+                       '<br><br>Best regards,<br>The Vault Team.'
+            toEmail = 'inquiry@thevaultlab.com'
           } else {
 
             html = '<br><br>Hi Support'+
                        '<br><br>New support request received from '+ contactus.fullname + ' (' + contactus.email + ') with the following message:'+
                        '<br><br>'+contactus.message+
                        attachment_msg+
-                       '<br><br>Best regards,<br>Cosball Team.'
-            toEmail = 'support@cosball.io'
+                       '<br><br>Best regards,<br>The Vault Team.'
+            toEmail = 'support@thevaultlab.com'
           }
 
           console.log(html)

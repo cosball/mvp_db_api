@@ -48,9 +48,9 @@
       "model": "user",
       "foreignKey": ""
     },
-    "skindata": {
+    "blacklists": {
       "type": "hasMany",
-      "model": "skindata",
+      "model": "blacklist",
       "foreignKey": ""
     },
     "transLogs": {

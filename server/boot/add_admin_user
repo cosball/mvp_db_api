@@ -5,7 +5,7 @@ module.exports = function(app) {
   var Institution = app.models.institution;
   
   Institution.create([
-    {institutionShortName: 'Cosball', institutionName: 'Cosball Laboratory', institutionAddress: 'NEM Blockchain Centre, KL',  
+    {institutionShortName: 'The Vault', institutionName: 'The Vault Laboratory', institutionAddress: 'NEM Blockchain Centre, KL',  
      institutionType: 'Main', contactNo: '0195711347', createdAt: Date.now(), creator: 'webadmin'}
   ], function(err, institutions) {
     if (err) throw err;
@@ -13,12 +13,12 @@ module.exports = function(app) {
     console.log('Created institution:', institutions);
 
     User.create([
-      {username: 'webadmin', firstname: 'Web', lastname: 'Administrator', email: 'webadmin@cosball.io', password: 'opensaysme1234', 
-       institutionShortName: 'Cosball', roleType: 'Super', posTitle: 'Web Admin', contactNo: '0195711347', 
-       addSkinDataCount: 0, upSkinDataCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId},
-      {username: 'apiadmin', firstname: 'API', lastname: 'Administrator', email: 'apiadmin@cosball.io', password: 'opensaysme1234', 
-       institutionShortName: 'Cosball', roleType: 'Super', posTitle: 'API Admin', contactNo: '0195711347', 
-       addSkinDataCount: 0, upSkinDataCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId}       
+      {username: 'webadmin', firstname: 'Web', lastname: 'Administrator', email: 'webadmin@thevaultlab.com', password: 'opensaysme1234', 
+       institutionShortName: 'TheVault', roleType: 'Super', posTitle: 'Web Admin', contactNo: '0195711347', 
+       addBlackListCount: 0, upBlackListCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId},
+      {username: 'apiadmin', firstname: 'API', lastname: 'Administrator', email: 'apiadmin@thevaultlab.com', password: 'opensaysme1234', 
+       institutionShortName: 'TheVault', roleType: 'Super', posTitle: 'API Admin', contactNo: '0195711347', 
+       addBlackListCount: 0, upBlackListCount: 0, createdAt: Date.now(), creator: 'webadmin', firstSignIn: false, emailVerified: true, institutionId: vaultId}       
     ], function(err, users) {
       if (err) throw err;
 

@@ -1,12 +1,12 @@
 {
   "db": {
-    "host": "localhost",
+    "host": "18.138.49.252",
     "port": 27017,
     "url": "",
-    "database": "scanDemoProd",
+    "database": "cosballMVPProd",
     "password": "a506035c0d7aa856300aa8062166cc08",
     "name": "db",
-    "user": "scanDemoUserProd",
+    "user": "cosballMVPUserProd",
     "useNewUrlParser": true,
     "connector": "mongodb"
   },
@@ -22,7 +22,7 @@
             "ciphers": "SSLv3"
         },
         "auth": {
-          "user": "productsupport@cosball.io",
+          "user": "productsupport@thevaultlab.com",
           "pass": "Ub40_#!$"
         },
         "requireTLS": true

@@ -1,5 +1,5 @@
-# Cosball MVP DB API
-This is the MongoDB API. All access to the Cosball Mongo DB pass through this API Server.
+# Scan Demo DB API
+This is the MongoDB API. All access to the Vault Mongo DB pass through this API Server.
 
 ## Environment Setup ##
 1. Install MongoDB database in your local machine.
@@ -46,9 +46,9 @@ This is the MongoDB API. All access to the Cosball Mongo DB pass through this AP
      nvm alias default lts/carbon && source ~/.bash_profile
      ```
 
-1. Clone this project: **git clone https://gitlab.com/cosball/mvp_db_api.git**
+1. Clone this project: **git clone https://gitlab.com/thevaultlab/scan-demo-db-api.git**
 2. npm install
-3. Navigate to mvp_db_api folder: `cd mvp_db_api`
+3. Navigate to scan-demo-db-api folder: `cd scan-demo-db-api`
 4. Define an admin user: `cd server/boot` and  `mv add_admin_user add_admin_user.js` and edit the `add_admin_user.js` to define your admin user name and password.
 5. Define MongoDB connection: The mongoDB datasource default is for the Dev Environment. To use PROD, TEST amd LOCAL DB environment, `cd server` and  rename the `datasources.json-<env>`, where <env> is prod, test, local, and dev, to `datasources.json`.
 6. Define Environment Configuration: The default envronment is for the Dev Environment. To switch to PROD or DEV environment, `cd server` and  rename the `config.json-<env>`, where <env> is prod, and dev, to `config.json`. 

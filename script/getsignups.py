@@ -72,7 +72,7 @@ for x in mydoc:
 			else:
 				instdoc = instcol.find_one({"institutionShortName": re.compile('^' + re.escape(inst_name) + '$', re.IGNORECASE)})
 				
-		url = 'https://api.cosnet.io:8082/api/users?access_token='+tokdoc["_id"]
+		url = 'http://localhost:8082/api/users?access_token='+tokdoc["_id"]
 		jsondata = {"firstname": x['signup']['firstname'], 
 					"lastname": x['signup']['lastname'], 
 					"institutionShortName": instdoc['institutionShortName'], 

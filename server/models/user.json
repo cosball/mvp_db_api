@@ -31,11 +31,11 @@
       "type": "string",
       "required": false
     },
-    "addSkinDataCount": {
+    "addBlackListCount": {
       "type": "number",
       "default": 0
     },
-    "upSkinDataCount": {
+    "upBlackListCount": {
       "type": "number",
       "default": 0
     },
@@ -89,9 +89,9 @@
       "model": "institution",
       "foreignKey": "institutionId"
     },    
-    "skindata": {
+    "blacklists": {
       "type": "hasMany",
-      "model": "skindata",
+      "model": "blacklist",
       "foreignKey": ""
     },
     "transLogs": {

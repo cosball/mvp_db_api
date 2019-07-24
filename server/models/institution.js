@@ -11,9 +11,9 @@ module.exports = function(Institution) {
   Institution.disableRemoteMethodByName('prototype.__updateById__users'); 
   Institution.disableRemoteMethodByName('prototype.__destroyById__users');  
   Institution.disableRemoteMethodByName('prototype.updateAttributes')
-  Institution.disableRemoteMethodByName('prototype.__findById__skindata');   
-  Institution.disableRemoteMethodByName('prototype.__updateById__skindata'); 
-  Institution.disableRemoteMethodByName('prototype.__destroyById__skindata');
+  Institution.disableRemoteMethodByName('prototype.__findById__blacklists');   
+  Institution.disableRemoteMethodByName('prototype.__updateById__blacklists'); 
+  Institution.disableRemoteMethodByName('prototype.__destroyById__blacklists');
   Institution.disableRemoteMethodByName('prototype.__findById__transLogs');   
   Institution.disableRemoteMethodByName('prototype.__updateById__transLogs'); 
   Institution.disableRemoteMethodByName('prototype.__destroyById__transLogs');  

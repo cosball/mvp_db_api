@@ -22,7 +22,7 @@
             "ciphers": "SSLv3"
         },
         "auth": {
-          "user": "productsupport@cosball.io",
+          "user": "productsupport@thevaultlab.com",
           "pass": "Ub40_#!$"
         },
         "requireTLS": true

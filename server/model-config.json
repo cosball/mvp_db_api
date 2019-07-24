@@ -47,7 +47,7 @@
     "dataSource": "db",
     "public": true
   },
-  "skindata": {
+  "skin_data": {
     "dataSource": "db",
     "public": true
   },
@@ -64,6 +64,14 @@
     "public": true
   },
   "transLog": {
+    "dataSource": "db",
+    "public": true
+  },
+  "country": {
+    "dataSource": "db",
+    "public": true
+  },
+  "race": {
     "dataSource": "db",
     "public": true
   },
