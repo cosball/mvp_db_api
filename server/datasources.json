@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "18.138.49.252",
+    "host": "localhost",
     "port": 27017,
     "url": "",
     "database": "cosballMVPProd",
@@ -23,7 +23,7 @@
         },
         "auth": {
           "user": "productsupport@thevaultlab.com",
-          "pass": "Ub40_#!$"
+          "pass": "sub!quota2ww"
         },
         "requireTLS": true
       }]

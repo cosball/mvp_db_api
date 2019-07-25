@@ -55,7 +55,7 @@
       "required": true
     },
     "recommenedCosball": {
-      "type": "string"
+      "type": "string",
       "required": false
     },
     "transactionHash": {

@@ -51,14 +51,6 @@
     "dataSource": "db",
     "public": true
   },
-  "institution": {
-    "dataSource": "db",
-    "public": true
-  },
-  "config_limit": {
-    "dataSource": "db",
-    "public": true
-  },
   "trans_access": {
     "dataSource": "db",
     "public": true

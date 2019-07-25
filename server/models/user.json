@@ -7,37 +7,41 @@
     "allowEternalTokens": true
   },
   "properties": {
-    "firstname": {
+    "email": {
       "type": "string",
       "required": true
     },
-    "lastname": {
+    "username": {
       "type": "string",
       "required": true
     },
-    "institutionShortName": {
+    "country": {
       "type": "string",
+      "required": true
+    },
+    "raceId": {
+      "type": "string",
+      "required": true
+    },
+    "dob": {
+      "type": "string",
+      "required": true
+    },
+    "gender": {
+      "type": "string",
+      "required": true
+    },
+    "toImprove": {
+      "type": "array",
+      "required": true
+    },
+    "ongoingProblems": {
+      "type": "array",
       "required": true
     },
     "roleType": {
       "type": "string",
       "required": true
-    },
-    "posTitle": {
-      "type": "string",
-      "required": false
-    },
-    "contactNo": {
-      "type": "string",
-      "required": false
-    },
-    "addBlackListCount": {
-      "type": "number",
-      "default": 0
-    },
-    "upBlackListCount": {
-      "type": "number",
-      "default": 0
     },
     "createdAt": {
       "type": "date",
@@ -68,32 +72,13 @@
     "emailVerified": {
       "type": "boolean",
       "default": true
-    },
-    "institutionId": {
-      "type": "string",
-      "required": true
     }
   },
   "scope": {
-    "order": "firstname ASC",
-    "include":     
-        {"relation": "institution",
-         "scope":
-            {"fields": ["institutionName"]}
-        } 
+    "order": "email ASC"
   },  
   "validations": [],
   "relations": {
-   "institution": {
-      "type": "belongsTo",
-      "model": "institution",
-      "foreignKey": "institutionId"
-    },    
-    "blacklists": {
-      "type": "hasMany",
-      "model": "blacklist",
-      "foreignKey": ""
-    },
     "transLogs": {
       "type": "hasMany",
       "model": "transLog",

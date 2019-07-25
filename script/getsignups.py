@@ -52,37 +52,17 @@ for x in mydoc:
 	len = usrcol.count_documents({"email":email})
 
 	if (len == 0):
-		inst_name = x['signup']['institutionName']
-		instdoc = instcol.find_one({"institutionName": re.compile('^' + re.escape(inst_name) + '$', re.IGNORECASE)})
-		if (instdoc == None):
-			print("Institution not found... create new:" + inst_name)
-			logging.error("Institution not found... create new:" + inst_name)
-
-			new_inst = {"institutionShortName": inst_name, "institutionName": inst_name, 
-						"institutionAddress": x['signup']['institutionAddress'],
-						"nemAddress": "none yet", 'institutionType': "NC",
-						"contactNo": x['signup']['contactNo'],
-						"creator": creator,
-						"createdAt": datetime.now() }
-			result = instcol.insert_one(new_inst)
-			if (result == None):
-				print("Institution insert failed...exiting...")
-				logging.error("Institution insert failed...exiting...")
-				continue
-			else:
-				instdoc = instcol.find_one({"institutionShortName": re.compile('^' + re.escape(inst_name) + '$', re.IGNORECASE)})
-				
-		url = 'http://localhost:8082/api/users?access_token='+tokdoc["_id"]
-		jsondata = {"firstname": x['signup']['firstname'], 
-					"lastname": x['signup']['lastname'], 
-					"institutionShortName": instdoc['institutionShortName'], 
-					"roleType": "User", 
-					"posTitle": x['signup']['posTitle'],
-		    		"contactNo": x['signup']['contactNo'],
-		    		"creator": creator,
-		    		"institutionId": str(instdoc["_id"]),
+		url = 'https://api.cosnet.io:8082/api/users?access_token='+tokdoc["_id"]
+		jsondata = {"country": x['signup']['country'], 
+				"raceId": x['signup']['raceId'], 
+				"dob": x['signup']['dob'],
+		    		"gender": x['signup']['gender'],
+		    		"toImprove": x['signup']['toImprove'],
+		    		"ongoingProblems": x['signup']['ongoingProblems'],
 		    		"username": x['signup']['email'],
-		    		"email": x['signup']['email']
+		    		"email": x['signup']['email'],
+				"roleType": "User", 
+		    		"creator": creator
 		}
 		response = requests.post(url,jsondata)
 		if (response.status_code == 200):
@@ -93,28 +73,26 @@ for x in mydoc:
 			unprocessed += 1
 			#print('Fail...'+response.text)
 
-		logging.info(	jsondata['firstname']+','+
-				jsondata['lastname']+','+
-				jsondata['institutionShortName']+','+
-				jsondata['roleType']+','+
-				jsondata['posTitle']+','+
-				jsondata['contactNo']+','+
-				jsondata['creator']+','+
-				jsondata['institutionId']+','+
+		logging.info(	jsondata['email']+','+
 				jsondata['username']+','+
-				jsondata['email']+','+
+				jsondata['country']+','+
+				jsondata['raceId']+','+
+				jsondata['dob']+','+
+				jsondata['gender']+','+
+				",".join(jsondata['toImprove'])+','+
+				",".join(jsondata['ongoingProblems'])+','+
+				jsondata['creator']+','+
 				result)
-		print(	jsondata['firstname']+','+
-				jsondata['lastname']+','+
-				jsondata['institutionShortName']+','+
-				jsondata['roleType']+','+
-				jsondata['posTitle']+','+
-				jsondata['contactNo']+','+
-				jsondata['creator']+','+
-				jsondata['institutionId']+','+
+		print(	jsondata['email']+','+
 				jsondata['username']+','+
-				jsondata['email']+','+
-				result)		
+				jsondata['country']+','+
+				jsondata['raceId']+','+
+				jsondata['dob']+','+
+				jsondata['gender']+','+
+				",".join(jsondata['toImprove'])+','+
+				",".join(jsondata['ongoingProblems'])+','+
+				jsondata['creator']+','+
+				result)
 		total_signups += 1
 
 total_message = 'Signup run finished. Total Signups: '+str(total_signups)+' Processed: '+str(processed)+' Unprocessed: '+str(unprocessed)
