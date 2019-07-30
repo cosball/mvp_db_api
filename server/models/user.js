@@ -233,11 +233,12 @@ module.exports = function(User) {
         });
         ctx.args.data.tempPassExpiry = new Date(Date.now()+EXPIRY_DAYS);
         ctx.args.data.tempPassExpired = false;
-        ctx.args.data.createdAt = new Date();
-        ctx.args.data.addBlackListCount = 0;
-        ctx.args.data.upBlackListCount = 0;
         ctx.args.data.emailVerified = true;
       }
+      else {
+        ctx.args.data.firstSignIn = false;
+      }
+      ctx.args.data.createdAt = new Date();
       next();
   });
 
@@ -258,42 +259,42 @@ module.exports = function(User) {
     }); 
 
     //var link = 'http://' + ctx.req.headers.host + '/#/landing';
-    var link = config.webhost + '/#/landing';
-    var html = '<br><img src="cid:vault" alt="Vault">'+
-        '<br><h2>Welcome to the NEMVault Beta!</h2>'+
-        'Hi '+ctx.args.data.firstname+', thank you for signing up for access to the NEMVault Beta.'+
-        "<br><br>Your account has been created and you can now login with the following credentials:"+
-        "<br><br>Username : "+ctx.args.data.email+
-        "<br>Temporary password : " + ctx.args.data.password+
-        "<br><br>This temporary password is valid only for 48 hours."+
-        "<br>Please note that you will be prompted to set a new password upon logging in for the first time."+
-        '<br><br><a href="' + link + '">'+'<img src="cid:login" alt="Vault Login">'+'</a>'+
-        "<br><br>We hope you enjoy your experience with the beta and please let us know how we can further improve it "+
-        '<a href="' + 'http://bit.ly/nvbfeedback' + '">'+'here'+'</a>'+
-        "<br><br>Regards,<br>The Vault Team."
-    console.log(ctx.args.data.password)
-    console.log(html)
-    User.app.models.Email.send({
-      to: ctx.args.data.email,
-      from: senderAddress,
-      subject: 'New Account',
-      html: html,
-      attachments: [
-          {
-           filename: 'B8DC0B75423E46A2B3728E462FE47275.png',
-           path: __dirname +'/img/B8DC0B75423E46A2B3728E462FE47275.png',
-           cid: 'vault'  
-          },
-          {
-           filename: '368A520F1DFD42C7AA8A4073FAAA2B6B.png',
-           path: __dirname +'/img/368A520F1DFD42C7AA8A4073FAAA2B6B.png',
-           cid: 'login'  
-          }
-      ]      
-    }, function(err) {
-      if (err) {console.log(err);console.log('> error sending new account email', ctx.args.data.email);return};
-      console.log('> sending new account email to:', ctx.args.data.email);
-    });     
+//    var link = config.webhost + '/#/landing';
+//    var html = '<br><img src="cid:vault" alt="Vault">'+
+//        '<br><h2>Welcome to the NEMVault Beta!</h2>'+
+//        'Hi '+ctx.args.data.firstname+', thank you for signing up for access to the NEMVault Beta.'+
+//        "<br><br>Your account has been created and you can now login with the following credentials:"+
+//        "<br><br>Username : "+ctx.args.data.email+
+//        "<br>Temporary password : " + ctx.args.data.password+
+//        "<br><br>This temporary password is valid only for 48 hours."+
+//        "<br>Please note that you will be prompted to set a new password upon logging in for the first time."+
+//        '<br><br><a href="' + link + '">'+'<img src="cid:login" alt="Vault Login">'+'</a>'+
+//        "<br><br>We hope you enjoy your experience with the beta and please let us know how we can further improve it "+
+//        '<a href="' + 'http://bit.ly/nvbfeedback' + '">'+'here'+'</a>'+
+//        "<br><br>Regards,<br>The Vault Team."
+//    console.log(ctx.args.data.password)
+//    console.log(html)
+//    User.app.models.Email.send({
+//      to: ctx.args.data.email,
+//      from: senderAddress,
+//      subject: 'New Account',
+//      html: html,
+//      attachments: [
+//          {
+//           filename: 'B8DC0B75423E46A2B3728E462FE47275.png',
+//           path: __dirname +'/img/B8DC0B75423E46A2B3728E462FE47275.png',
+//           cid: 'vault'  
+//          },
+//          {
+//           filename: '368A520F1DFD42C7AA8A4073FAAA2B6B.png',
+//           path: __dirname +'/img/368A520F1DFD42C7AA8A4073FAAA2B6B.png',
+//           cid: 'login'  
+//          }
+//      ]      
+//    }, function(err) {
+//      if (err) {console.log(err);console.log('> error sending new account email', ctx.args.data.email);return};
+//      console.log('> sending new account email to:', ctx.args.data.email);
+//    });     
      return;
   });
 

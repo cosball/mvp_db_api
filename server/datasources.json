@@ -15,15 +15,15 @@
       "connector": "mail",
       "transports": [{
         "type": "SMTP",
-        "host": "smtp.office365.com",
+        "host": "smtp.gmail.com",
         "secure": false,
         "port": 587,
         "tls": {
             "ciphers": "SSLv3"
         },
         "auth": {
-          "user": "productsupport@thevaultlab.com",
-          "pass": "sub!quota2ww"
+          "user": "service@cosball.io",
+          "pass": "H7[,@)283Q8bm}N"
         },
         "requireTLS": true
       }]
