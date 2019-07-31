@@ -51,7 +51,6 @@ module.exports = function(User) {
         creator: info.user.username,
         result: "SUCCESS",
         userId: info.user.id,
-        institutionId: info.user.institutionId,
         forgotPasswd: {user_name: info.user.username},
         description: "User " + info.user.username + " forgots his/her password."
     }
@@ -72,7 +71,6 @@ module.exports = function(User) {
               creator: user.username,
               result: "SUCCESS",
               userId: user.id,
-              institutionId: user.institutionId,
               resetPasswd: {user_name: user.username},
               description: "User " + user.username + " resets his/her password."
             }
@@ -99,7 +97,6 @@ module.exports = function(User) {
             creator: user.username,
             result: "SUCCESS",
             userId: user.id,
-            institutionId: user.institutionId,
             changePasswd: {user_name: user.username},
             description: "User " + user.username + " changes his/her password."
         }
@@ -187,7 +184,6 @@ module.exports = function(User) {
             creator: user.username,
             result: "SUCCESS",
             userId: user.id,
-            institutionId: user.institutionId,
             loginSignUp: {user_name: user.username},
             description: "User " + user.username + " logs in."
           }
@@ -210,7 +206,6 @@ module.exports = function(User) {
             creator: user.username,
             result: "SUCCESS",
             userId: user.id,
-            institutionId: user.institutionId,
             logout: {user_name: user.username},
             description: "User " + user.username + " logouts."
           }
@@ -249,7 +244,6 @@ module.exports = function(User) {
         creator: ctx.args.data.creator,
         result: "SUCCESS",
         userId: ctx.result.id,
-        institutionId: ctx.args.data.institutionId,
         addUser: {user_name: ctx.args.data.username},
         description: "User " + ctx.args.data.creator + " creates user " + ctx.args.data.username + "." 
       }
@@ -311,7 +305,6 @@ module.exports = function(User) {
           creator: ctx.args.data.updatedBy,
           result: "SUCCESS",
           userId: ctx.result.id,
-          institutionId: ctx.result.institutionId,
           editUser: {user_name: ctx.result.username},
           description: "User " + ctx.args.data.updatedBy + " edits user " + ctx.result.username + "."
       }
@@ -341,7 +334,6 @@ module.exports = function(User) {
           creator: user.username,
           result: "SUCCESS",
           userId: userId,
-          institutionId: user.institutionId,
           signup: signup,
           description: signup.email + " signs up."
       }
@@ -389,7 +381,6 @@ module.exports = function(User) {
           creator: user.username,
           result: "SUCCESS",
           userId: userId,
-          institutionId: user.institutionId,
           contactus: contactus,
           description: contactus.email + " contacted us."
       }
