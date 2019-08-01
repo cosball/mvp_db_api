@@ -3,7 +3,7 @@
   "host": "0.0.0.0",
   "port": 8082,
   "webhost": "https://mvp.cosnet.io",
-  "http": false,
+  "http": true,
   "remoting": {
     "context": false,
     "rest": {
