@@ -33,11 +33,11 @@
     },
     "toImprove": {
       "type": "array",
-      "required": true
+      "required": false
     },
     "ongoingProblems": {
       "type": "array",
-      "required": true
+      "required": false
     },
     "roleType": {
       "type": "string",

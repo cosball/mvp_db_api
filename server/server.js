@@ -5,6 +5,8 @@
 
 'use strict';
 
+var svgCaptcha = require('svg-captcha');
+var encryption = require('./encryption');
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
@@ -43,6 +45,18 @@ app.start = function() {
   });
   return server;
 };
+
+app.use('/api/captcha', function (req, res) {
+  svgCaptcha.options
+  var captcha = svgCaptcha.create({size: 4, noise: 2, background: 'white', width: 150, height: 50});
+  // req.session.captcha = captcha.text;
+  
+  var text = encryption.encrypt(JSON.stringify(captcha, null, 2).replace(/(\r\n|\n|\r)/g, "").replace(/"/g, '\"'));
+
+  // console.log(text);
+  res.type('text');
+  res.status(200).send(text);
+});
 
 // start the server if `$ node server.js`
 if (require.main === module) {
