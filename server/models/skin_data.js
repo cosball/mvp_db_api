@@ -16,10 +16,10 @@ module.exports = function (SkinData) {
 
 	SkinData.dashboard = function (noOfDays, cb) {
 
-		var noDays = noOfDays && noOfDays > 6 ? noOfDays : 7;
+		var noDays = noOfDays && noOfDays > 9 ? noOfDays : 10;
 
 		var dashboardData = {
-			enteredDaily: {
+			SkinDataPerDay: {
 				date: [],
 				count: []
 			}
@@ -27,7 +27,7 @@ module.exports = function (SkinData) {
 
 		var promiseArr = [];
 		var today = new Date();
-		for (var i = 0; i < noDays; i++) {
+		for (var i = noDays ; i >= 0 ; i--) {
 			var promise = new Promise((resolve, reject) => {
 				var date = new Date();
 				date.setDate(today.getDate() - i);
@@ -60,8 +60,8 @@ module.exports = function (SkinData) {
 		Promise.all(promiseArr)
 			.then(function (values) {
 				for (const [index, data] of values.entries()) {
-					dashboardData.enteredDaily.date.push(data[0])
-					dashboardData.enteredDaily.count.push(data[1])
+					dashboardData.SkinDataPerDay.date.push(data[0])
+					dashboardData.SkinDataPerDay.count.push(data[1])
 				}
 
 				cb(null, dashboardData);
